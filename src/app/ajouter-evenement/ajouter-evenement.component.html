@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+
+
+<main class="d-flex flex-nowrap" >
+  <app-sidebar></app-sidebar>
+<!--  ************************************Ajouter*****************************************-->
+<div class="container">
+  <h1 style="color: blue">Ajouter Evenement</h1>
+  <form #f='ngForm' class="needs-validation" novalidate>
+    <fieldset>
+
+            <!--          NOM -->
+      <div class="form-group">
+        <label for="nom">Entrez le nom de l'evenement</label>
+        <input type="text" class="form-control" id="nom" placeholder="" required #n='ngModel' name="nom" ngModel >
+        <!--  *************contrôle Nom*************-->
+        <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+          <div *ngIf="n.errors?.['required']" >le nom de l'evenemenet est obligatoire </div>
+        </div>
+      </div>
+              <!--    responsable-->
+      <div class="form-group">
+        <label for="text">le responsable de l'evenement</label>
+        <input type="text" class="form-control" id="text" placeholder="" #r='ngModel' pattern="[a-zA-Z]+" minlength="3" required name="responsable" ngModel>
+        <!--  *************contrôle Responsable *************-->
+        <div class="alert alert-danger" *ngIf="r.invalid && r.touched">
+          <div *ngIf="r.errors?.['required']" > Le Nom Du Responsable !!  </div>
+          <div *ngIf="r.errors?.['minlength']" >au moins 3 caractéres !! </div>
+          <div *ngIf="r.errors?.['pattern']" >insérer que des lettres </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <!--  date début -->
+        <label for="date1" ><strong>Commence le</strong> </label>
+        <input type="date" placeholder="Date de début" class="form-control" #d1='ngModel' name="datedebut" size="12" autocomplete="off" value="" id="date1" required ngModel><br>
+        <!--  *************contrôle date debut *************-->
+        <div class="alert alert-danger" *ngIf="d1.invalid && d1.touched">
+          <div *ngIf="d1.errors?.['required']" > insérer la date de début   </div>
+        </div>
+          <!--        temps de debut -->
+        <input type="time" placeholder="Heure de début" class="form-control" name="heuredebut" id="heuredebut" #t1='ngModel' required ngModel>
+        <!--  *************contrôle temps de debut  *************-->
+        <div class="alert alert-danger" *ngIf="t1.invalid && t1.touched">
+          <div *ngIf="t1.errors?.['required']" > insérer le temps de debut  </div>
+        </div>
+      </div>
+            <!--        date de fin -->
+      <div class="form-group">
+        <label for="date2"><strong>Se termine le</strong></label>
+        <input type="date" placeholder="Date de début" class="form-control" title="" name="datefin" size="12" autocomplete="off" value="" id="date2" #d2='ngModel' required ngModel><br>
+        <!--  *************contrôle date de fin  *************-->
+        <div class="alert alert-danger" *ngIf="d2.invalid && d2.touched">
+          <div *ngIf="d2.errors?.['required']" > insérer la date de fin de l'évenement  </div>
+        </div>
+            <!--      temp de fin   -->
+        <input type="time" placeholder="Heure de début" class="form-control" id="heurefin" name="heurefin" #t2='ngModel' required ngModel>
+        <!--  *************contrôle temps de fin  *************-->
+        <div class="alert alert-danger" *ngIf="t2.invalid && t2.touched">
+          <div *ngIf="t2.errors?.['required']" > insérer le temps de fin de l'évenement  </div>
+        </div>
+
+      </div>
+              <!--type lieu-->
+      <div class="form-group">
+        <label for="selection" >Type de lieu de l'évènement</label>
+        <select id="selection" class="form-control" name="typelieu" ngModel #tl='ngModel' required>
+          <option value=""  selected >Sélectionner</option>
+          <option value="Sur Site"  >Sur Site</option>
+          <option value="En ligne" >En ligne</option>
+        </select>
+        <!--  *************contrôle type lieu   *************-->
+        <div class="alert alert-danger" *ngIf="tl.value=='' && tl.touched && tl.invalid">
+          <div *ngIf="tl.errors?.['required']"  > type de lieu n'est pas sélectionner  </div>
+        </div>
+      </div>
+              <!--      Le lieu de levenemenet-->
+      <div class="form-group">
+        <label for="lieu">L'emplacement</label>
+        <input type="text" class="form-control" id="lieu" placeholder="" name="lieu" #l='ngModel' [disabled]="tl.value==''" required ngModel>
+        <!--  *************contrôle lieu evenement  *************-->
+        <div class="alert alert-danger" *ngIf="l.invalid && l.touched" >
+          <div *ngIf="l.errors?.['required']" > le lieu de l'evenement est vide    </div>
+        </div>
+      </div>
+            <!--nombre de place -->
+      <div class="col-md-3 mb-3">
+        <label for="cp">Nombre de place</label>
+        <input type="number" class="form-control" id="cp" placeholder="Nombre" name="capacite" #nbrp='ngModel' maxlength="3" pattern="^\d{1,3}$" required ngModel>
+        <!--  *************contrôle nombre de place  *************-->
+        <div class="alert alert-danger" *ngIf="nbrp.invalid && nbrp.touched" >
+          <div *ngIf="nbrp.errors?.['required']" > vide !!!   </div>
+          <div *ngIf="nbrp.errors?.['pattern']" > nombre invalid  </div>
+        </div>
+      </div>
+          <!--Type de levenement-->
+      <div class="form-group">
+        <label for="type">Type de l'évènement</label>
+        <select id="type" class="form-control" name="typeevenement" #te='ngModel' ngModel required>
+          <option value="" selected >Sélectionner</option>
+          <option value="Conférence" >Conférence</option>
+          <option value="Attraction" >Attraction</option>
+          <option value="Formation ou Atelier"  >Formation ou Atelier</option>
+          <option value="Convention" >Convention</option>
+          <option value="Voyage" >Voyage</option>
+        </select>
+        <!--  *************contrôle type evenement   *************-->
+        <div class="alert alert-danger" *ngIf="te.value=='' && te.touched">
+          <div *ngIf="te.errors?.['required']" > type de l'évenement n'est pas sélectionner  </div>
+        </div>
+      </div>
+                <!--Paiement-->
+      <div class="form-group">
+        <label for="paiment">Paiement</label>
+        <select id="paiment" class="form-control" name="paiement" #p='ngModel' required ngModel>
+          <option value=""  >Sélectionner</option>
+          <option value="Gratuit" >Gratuit</option>
+          <option value="Payante" >Payante</option>
+        </select>
+        <!--  *************contrôle type paiment   *************-->
+        <div class="alert alert-danger" *ngIf="p.value=='' && p.touched">
+          <div *ngIf="p.errors?.['required']" > type de paiement n'est pas sélectionner  </div>
+        </div>
+      </div>
+              <!--Description-->
+      <div class="form-group">
+        <label for="bio">Description</label>
+        <textarea class="form-control" id="bio" rows="3" name="description" #descrip='ngModel' required ngModel></textarea>
+        <!--  *************contrôle description   *************-->
+        <div class="alert alert-danger" *ngIf="descrip.invalid && descrip.touched">
+          <div *ngIf="descrip.errors?.['required']" > le champs description est vide   </div>
+        </div>
+      </div>
+      <br>
+      <button class="btn btn-primary" [disabled]="f.invalid" type="submit" (click)="ajouter(f)"> Ajouter</button>
+    </fieldset>
+  </form>
+</div>
+</main>
+</body>
+</html>
