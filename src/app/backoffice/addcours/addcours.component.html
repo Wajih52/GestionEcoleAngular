@@ -1,0 +1,104 @@
+<section class="main-content">
+<div class="card">
+  <div class="wrapper"><h1>Ajouter Cours</h1></div>
+    <div class="card-body">
+    <form #f="ngForm" [formGroup]="formCours">
+      <div class="form-group">
+      <label>nom du cours</label>
+      <input
+        type="text"
+        name="nom"
+        [(ngModel)]="cours.nom"
+        formControlName="nom"
+        class="form-control"
+        placeholder="nom du cours"
+      />
+      </div>
+   
+      <div class="form-group">
+      <label>classe</label>
+      <input
+        type="text"
+        name="classe"
+        [(ngModel)]="cours.classe"
+        formControlName="classe"
+        class="form-control"
+        placeholder="classe"
+      />
+      </div>
+      <div class="form-group">
+      <label>matiere</label>
+      <input
+        type="text"
+        name="matiere"
+        [(ngModel)]="cours.matiere"
+        formControlName="matiere"
+        class="form-control"
+        placeholder="matiere"
+      />
+      </div>
+      <div class="form-group">
+      <label>nom d'enseignant</label>
+      <input
+        type="text"
+        name="nomprof"
+        minlength="10"
+        [(ngModel)]="cours.nomprof"
+        formControlName="nomprof"
+        class="form-control"
+        placeholder="nom d'enseignant"
+      />
+      </div>
+      <div class="row">
+        <div class="col-3">
+            <input type="file" (change)="selectFile($event)" />
+        </div>
+        
+        <div class="col-4">
+          <button
+            class="btn  btn-sm"
+            [disabled]="!selectedFiles"
+            (click)="upload()"
+            style="background-color: #5462ca; margin-left: 30px; margin-top:0px"
+          >
+            Upload
+          </button>
+        </div>
+        <div class="col-7">
+          <div *ngIf="currentFile" class="progress my-3">
+            <div
+              class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar"
+              attr.aria-valuenow="{{ progress }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: progress + '%' }"
+            >
+              {{ progress }}%
+            </div>
+          </div>
+          <div *ngIf="message" class="alert alert-secondary" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      </div>
+
+      <input
+        *ngIf="isuploaded == true"
+        type="submit"
+        value="AJOUTER"
+        class="btn btn-primary mr-3"
+        (click)="savedata(f.value)"
+      />
+      <input
+        value="RETOUR"
+        class="btn  mar"
+        (click)="goback()"
+        style="background-color: grey;"
+       
+      />
+    </form>
+  </div>
+</div>
+
+</section>

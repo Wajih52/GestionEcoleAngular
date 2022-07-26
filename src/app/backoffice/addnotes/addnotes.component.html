@@ -1,0 +1,86 @@
+<section class="main-content">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="modal-title">Import notes from file</h4>
+    </div>
+    <div class="card-body">
+      <div class="custom-file">
+        <input
+          type="file"
+          class="custom-file-input"
+          id="inputGroupFile01"
+          aria-describedby="inputGroupFileAddon01"
+          accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          (change)="addfile($event)"
+        />
+        <label class="custom-file-label" for="inputGroupFile01"
+          >Choose file</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="wrapper" ><h1>Ajout des Notes</h1></div>
+    <div class="card-body">
+      <form #f="ngForm" [formGroup]="formNote">
+        <div class="form-group">
+        <label>matiere</label>
+        <input
+          type="text"
+          name="matiere"
+          [(ngModel)]="note.matiere"
+          formControlName="matiere"
+          class="form-control"
+          placeholder="matiere"
+        />
+        </div>
+        <div class="form-group">
+        <label>type</label>
+        <select name="type" [(ngModel)]="note.type" formControlName="type" class="form-control" placeholder="type">
+          <option value="DS" class="form-control">DS</option>
+          <option value="Exam" class="form-control">Exam</option>
+        </select>
+        </div>
+        <div class="form-group">
+        <label>note</label>
+        <input
+          type="number"
+          name="note"
+          [(ngModel)]="note.note"
+          formControlName="note"
+          class="form-control"
+          placeholder="note"
+          min="0" max="20"
+        />
+        </div>
+        <div class="form-group">
+        <label>étudiant</label>
+        <input
+          type="text"
+          name="etudiant"
+          [(ngModel)]="note.etudiant"
+          formControlName="etudiant"
+          minlength="10"
+          class="form-control"
+          placeholder="étudiant"
+        />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary mr-3"
+          (click)="savedata(f.value)"
+        >
+          Save
+        </button>
+        <input
+        value="RETOUR"
+        class="btn mar"
+        (click)="goback()"
+        style="background-color: grey;"
+       
+      />
+      </form>
+    </div>
+  </div>
+</section>

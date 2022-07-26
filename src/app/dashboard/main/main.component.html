@@ -1,0 +1,88 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Tableau de bord</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Tableau de bord</li>
+  </ul>
+  <div class="section-body">
+    <div class="row ">
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20">Nombre de cours ajouté</h5>
+                    <h2 class="mb-3 font-18"></h2>
+                    <p class="mb-0"><span class="col-green">{{nbr}}</span></p>
+                  </div>
+                  <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/cours.jpg" alt="" style="margin-top:10%;width:200px;height:90px;margin-left:10px;box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20"> les notes moins que 10</h5>
+                    <h2 class="mb-3 font-18"></h2>
+                    <p class="mb-0"><span class="col-orange">{{total0}}%</span></p>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="33" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets\images\banner\note.jpg" alt="" style="margin-top:10%;width:250px;height:90px;margin-left:10px;box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20">les notes plus que 10</h5>
+                    <h2 class="mb-3 font-18"></h2>
+                    <p class="mb-0"><span class="col-blue">{{total12}}%</span>
+                    </p>
+                  </div>
+                  <ngb-progressbar type="info" [value]="25" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets\images\banner\relevé de notes.jpg" alt="" style="margin-top:10%;width:250px;height:90px;margin-left:10px;box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19); ">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+   
+  </div>
+</section>
