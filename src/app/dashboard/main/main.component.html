@@ -1,0 +1,111 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Dashboard</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Dashboard</li>
+  </ul>
+  <div class="section-body">
+    <div class="row ">
+      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20">Absence validé</h5>
+                    <h2 class="mb-3 font-18">{{validation}}</h2>
+                    <p class="mb-0"><span class="col-green">42%</span></p>
+                  </div>
+                  <ngb-progressbar type="success" [value]="42" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/logoAbsnece.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20"> Absence Non validé</h5>
+                    <h2 class="mb-3 font-18">{{plusVal}}</h2>
+                    <p class="mb-0"><span class="col-orange">33%</span></p>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="33" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/logoNonvalidé.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20">Nombre d'absence</h5>
+                    <h2 class="mb-3 font-18">{{nbrAbse}}</h2>
+                    <p class="mb-0"><span class="col-blue">25%</span>
+                    </p>
+                  </div>
+                  <ngb-progressbar type="info" [value]="25" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/absence-management-750x375.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-statistic-4">
+            <div class="align-items-center justify-content-between">
+              <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-grid-spacing">
+                  <div class="card-content">
+                    <h5 class="font-20">Piece-jointe</h5>
+                    <h2 class="mb-3 font-18">{{nbrnPiece}}</h2>
+                    <p class="mb-0"><span class="col-red">65%</span></p>
+                  </div>
+                  <ngb-progressbar type="danger" [value]="65" height=".3rem"></ngb-progressbar>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-grid-spacing">
+                  <div class="banner-img">
+                    <img src="assets/images/banner/logoPiece.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+</section>

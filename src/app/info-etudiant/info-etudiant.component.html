@@ -1,0 +1,44 @@
+<section class="main-content">
+    <br><br>
+    
+    <a class="btn btn-success" routerLink="/searchEtudiant">search</a>
+  
+    <div  style="text-align:center;"><h1> Affichage des Absences</h1> </div>
+    <hr>
+  
+  
+    <br> <br> <br>
+    <div class="container" id="content" #content>
+  
+      <div class="table">
+        <div class="table-header">
+          <div class="header__item">etudiant</div>
+          <div class="header__item">matiere</div>
+          <div class="header__item">piece</div>
+          <div class="header__item">justificatif</div>
+          <div class="header__item">Date</div>
+          <div class="header__item"></div>
+          <div class="header__item"></div>
+        </div>
+        <div class="absolute">
+          <div class="table-row" *ngFor="let item of absence; let i = index">
+            <div class="table-data"> {{item.etudiant}} </div>
+            <div class="table-data">{{item.matiere}}</div>
+            <div class="table-data">{{item.piece?.description}}</div>
+            <div class="table-data">{{item.justificatif}}</div>
+            <div class="table-data">{{item.date}}</div>
+           
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+  
+  
+  
+  

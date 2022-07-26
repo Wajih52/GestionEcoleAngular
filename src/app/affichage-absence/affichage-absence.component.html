@@ -1,0 +1,57 @@
+<section class="main-content">
+  <br><br>
+  <a class="btn btn-success" routerLink="/searchEtudiant">search</a>
+
+  <div  style="text-align:center;"><h1> Affichage des Absences</h1> </div>
+  <hr>
+  <a (click)="generatePdf()"  download style="float: right;"><span>Download</span><span>PDF</span></a>
+  <button class="custom-btn btn-15" style="float: left;" routerLink="/addAbsence">Ajouter</button>
+
+  <button class="custom-btn-btn-15" (click)="exportData(h)">Export Xlsx</button>
+
+  <br> <br> <br>
+  <div class="container" id="content" #content>
+
+    <div class="table">
+      <div class="table-header">
+        <div class="header__item">etudiant</div>
+        <div class="header__item">matiere</div>
+        <div class="header__item">piece</div>
+        <div class="header__item">justificatif</div>
+        <div class="header__item">Date</div>
+        <div class="header__item"></div>
+        <div class="header__item"></div>
+      </div>
+      <div class="absolute">
+        <div class="table-row" *ngFor="let item of absence; let i = index">
+          <div class="table-data"> {{item.etudiant}} </div>
+          <div class="table-data">{{item.matiere}}</div>
+          <div class="table-data">{{item.piece?.description}}</div>
+          <div class="table-data">{{item.justificatif}}</div>
+          <div class="table-data">{{item.date}}</div>
+          <div class="table-data"><div class="" style="text-align: center; margin-top: 8px;">
+            <button class="icon-btn add-btn">
+              <div class="btn-txt"(click)="deleteAbsence(item._id,i)" >Supprimer</div>
+            </button>
+          </div>
+          </div>
+          <div class="table-data"><div class="" style="text-align: center;margin-top:5%">
+            <button class="icon-btn1 add-btn1">
+              <div class="add-icon"></div>
+              <div class="btn-txt" [routerLink]="['./edit-absence', item._id]">Edit</div>
+            </button>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+

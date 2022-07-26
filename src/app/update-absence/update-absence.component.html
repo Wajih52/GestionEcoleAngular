@@ -1,0 +1,42 @@
+<section class="main-content">
+<body>
+    <div class="center"> <div class="wrapper"><h1>Modifier Absence</h1></div>
+
+  <form #f="ngForm" [formGroup]="formAchat">
+
+    <div class="form-group">
+      <label>etudiant</label>
+      <input type="text" name="etudiant"  class="form-control" [(ngModel)]="absence.etudiant" formControlName="etudiant">
+    </div>
+
+    <div class="form-group">
+      <label>justificatif</label>
+      <input type="text" name="justificatif" class="form-control" [(ngModel)]="absence.justificatif" formControlName="justificatif">
+    </div>
+
+    <div class="form-group">
+      <label >Piece</label>
+      <select class="form-control" name="piece" [(ngModel)]="absence.piece" formControlName="piece">
+        <option *ngFor="let p of pieces" value="{{p._id}}">{{p.description}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>matiere</label>
+      <input type="text"  name="matiere" class="form-control" [(ngModel)]="absence.matiere" formControlName="matiere">
+    </div>
+    <div class="form-group">
+      <label>date</label>
+      <input type="text"  name="date" class="form-control" [(ngModel)]="absence.date" formControlName="date">
+    </div>
+
+    <div class="buttons">
+      <div class="container">
+          <a  (click)="updateAbsence(f.value)" class="btn effect01" target="_blank"><span>Update</span></a>
+      </div>
+    </div>
+
+    </form>
+  </div>
+  </body>
+</section>
