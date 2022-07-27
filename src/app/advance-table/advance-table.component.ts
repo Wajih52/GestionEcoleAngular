@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import {
   FormGroup,
   FormBuilder,
@@ -9,6 +9,8 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { UserService } from '../authentication/service/user.service';
+
 
 @Component({
   selector: 'app-advance-table',
@@ -51,12 +53,13 @@ export class AdvanceTableComponent implements OnInit {
     { id: '3', value: 'Pending' },
   ];
   designationType = [
-    { id: '1', value: 'Manager' },
-    { id: '2', value: 'Team Leader' },
-    { id: '3', value: 'Clerk' },
+    { id: '1', value: 'Admin' },
+    { id: '2', value: 'enseignant' },
+    { id: '3', value: 'Student' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table2: DatatableComponent;
   constructor(
+    private s: UserService,
     private fb: FormBuilder,
     private modalService: NgbModal,
     private toastr: ToastrService
@@ -64,14 +67,14 @@ export class AdvanceTableComponent implements OnInit {
     this.editForm = this.fb.group({
       id: new FormControl(),
       img: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      designation: new FormControl(),
+      name: new FormControl(),
+      password: new FormControl(),
+      role: new FormControl(),
       phone: new FormControl(),
       email: new FormControl(),
       status: new FormControl(),
       gender: new FormControl(),
-      address: new FormControl(),
+      adress: new FormControl(),
     });
     window.onresize = () => {
       this.scrollBarHorizontal = window.innerWidth < 1200;
@@ -117,29 +120,31 @@ export class AdvanceTableComponent implements OnInit {
     this.register = this.fb.group({
       id: [''],
       img: [''],
-      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      lastName: [''],
-      designation: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      password: [''],
+      role: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      email: [
+      email: [  
         '',
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      status: ['', [Validators.required]],
+      status: [''],
       address: [''],
     });
   }
   // fetch data
   fetch(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', 'assets/data/adv-tbl-data.json');
+    req.open('GET', 'http://localhost:3000/api/v1/users/');
     req.onload = () => {
       const data = JSON.parse(req.response);
       cb(data);
     };
     req.send();
   }
+ 
+
   // add new record
   addRow(content) {
     this.modalService.open(content, {
@@ -157,17 +162,17 @@ export class AdvanceTableComponent implements OnInit {
       ariaLabelledBy: 'modal-basic-title',
       size: 'lg',
     });
-    this.editForm.setValue({
+    this.editForm.patchValue({
       id: row.id,
       img: row.img,
-      firstName: row.firstName,
-      lastName: row.lastName,
-      designation: row.designation,
+      name: row.name,
+      password: row.password,
+      role: row.role,
       phone: row.phone,
       email: row.email,
       gender: row.gender,
       status: row.status,
-      address: row.address,
+      adress: row.adress,
     });
     this.selectedRowData = row;
   }
@@ -181,6 +186,7 @@ export class AdvanceTableComponent implements OnInit {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.value) {
+
         this.deleteRecord(row);
         this.deleteRecordSuccess(1);
       }
@@ -188,7 +194,13 @@ export class AdvanceTableComponent implements OnInit {
   }
 
   deleteRecord(row) {
+    this.s.deluser(row.id).subscribe(
+      ()=>{
+        console.log('user deleted !');
+        window.location.reload();
+      })
     this.data = this.arrayRemove(this.data, row.id);
+    
   }
   arrayRemove(array, id) {
     return array.filter(function (element) {
@@ -197,29 +209,65 @@ export class AdvanceTableComponent implements OnInit {
   }
   // save add new record
   onAddRowSave(form: FormGroup) {
-    this.data.push(form.value);
-    this.data = [...this.data];
+    //this.data.push(form.value);
+    //this.data = [...this.data];
+
+      this.s.adduser(form.value).subscribe(
+        ()=>{
+         console.log('user Add Success !')
+         window.location.reload();
+        })
+    
     form.reset();
     this.modalService.dismissAll();
     this.addRecordSuccess();
   }
   // save record on edit
+
+
+
+
+
+
   onEditSave(form: FormGroup) {
-    this.data = this.data.filter((value, key) => {
-      if (value.id == form.value.id) {
-        value.firstName = form.value.firstName;
-        value.lastName = form.value.lastName;
-        value.designation = form.value.designation;
-        value.phone = form.value.phone;
-        value.gender = form.value.gender;
-        value.email = form.value.email;
-        value.status = form.value.status;
-        value.address = form.value.address;
-      }
-      this.modalService.dismissAll();
-      return true;
-    });
-    this.editRecordSuccess();
+
+    this.s.updateuser('62bf3534e164ab3184941a96',form.value).subscribe(
+      ()=>{
+    
+        this.editRecordSuccess();
+       console.log('user updated Success !')
+       window.location.reload();
+      })
+  
+      
+  }
+
+
+
+
+  onEditSaverown(form: FormGroup) {
+
+    this.s.updateuser('62bf3534e164ab3184941a96',form.value).subscribe(
+      ()=>{
+        this.data = this.data.filter((value, key) => {
+          if (value.id == form.value.id) {
+            value.name = form.value.name;
+            value.password = form.value.password;
+            value.role = form.value.role;
+            value.phone = form.value.phone;
+            value.gender = form.value.gender;
+            value.email = form.value.email;
+            value.status = form.value.status;
+            value.adress = form.value.adress;
+          }
+          this.modalService.dismissAll();
+          return true;
+        });
+        this.editRecordSuccess();
+       console.log('user updated Success !')
+      })
+  
+   
   }
   // filter table data
   filterDatatable(event) {

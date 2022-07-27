@@ -17,6 +17,12 @@ import {
 } from 'ng-apexcharts';
 import { CoursService } from '../../services/cours.service';
 import { notesService } from '../../services/notes.service';
+import { PieceService } from 'src/app/services/piece.service';
+import { ServiceAbsenceService } from 'src/app/services/service-absence.service';
+import { ServiceAchatService } from 'src/app/services/service-achat.service';
+import { ServiceComptaService } from 'src/app/services/service-compta.service';
+import { EvenementService } from 'src/app/services/evenement.service';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -56,7 +62,26 @@ export class MainComponent implements OnInit {
   total1=0;
   total12=''
   total0=''
-  constructor(private doct:CoursService, private doct1:notesService){
+  validation=0;
+  plusVal=0;
+  listeAbsence:any;
+  ListePiece:any;
+  nbrAbse=0;
+  nbrnPiece=0;
+  listeAchat:any;
+  ListeCompta:any;
+  nbrAchat=0;
+  nbrCompta=0;
+  listeevenement:any;
+  listeDetails:any;
+  listeparticipant:any;
+  listenombreparticipant:[];
+  nbrevenement=0;
+  nbrparticipant=0;
+  moyenLike=0;
+  moyenLikeentier:any;
+  nbrlike=0;
+  constructor(private doct:CoursService, private doct1:notesService ,private doct2:ServiceAbsenceService, private doct3:PieceService,private doct4:ServiceAchatService, private doct5:ServiceComptaService,private es:EvenementService){
 
   }
   ngOnInit() {
@@ -97,7 +122,91 @@ export class MainComponent implements OnInit {
       )
       }
     )
+    this.doct2.getAbsence().subscribe(
+      res=>{
+      this.listeAbsence=res;
+      console.log(this.listeAbsence.length);  
+      this.nbrAbse=this.listeAbsence.length;
+      console.log(this.nbrAbse);
+      
+      }
+    )
+    this.doct3.getPiece().subscribe(
+      res=>{
+      this.ListePiece=res;
+      this.nbrnPiece=this.ListePiece.length;
+      console.log(this.nbrnPiece);
+      this.ListePiece.forEach(res=>{
+        // console.log(res);
+        // @ts-ignore
+        if(res.validation == 'oui'){
+          this.liste3.push(res)
+          this.validation=this.liste3.length
+         // this.total=(this.moins*100)/this.nbrn;
+          //this.total0=this.total.toFixed(2);
+          console.log(this.validation);
+        }
+        if(res.validation == 'non'){
+          this.liste2.push(res)
+          this.plusVal=this.liste2.length
+          //this.total1=((this.plus*100)/this.nbrn);
+          //this.total12=this.total1.toFixed(2);
+          console.log(this.plusVal);
+        }
+
+      } 
+      )
+      }
+    )
+    this.doct4.getAchats().subscribe(
+      res=>{
+      this.listeAchat=res;
+      this.nbrAchat=this.listeAchat.length;
+      
+      }
+    )
+    this.doct5.getCompta().subscribe(
+      res=>{
+      this.ListeCompta=res;
+      this.nbrCompta=this.ListeCompta.length;
+      }
+    )
+    this.es.afficherEvenement().subscribe(
+      E=>{
+        this.listeevenement=E;
+        this.nbrevenement=this.listeevenement.length;
+        // console.log('nbr evenement '+this.nbrevenement);
+      }
+    )
+
+
+    this.es.afficherParticipant().subscribe(
+      P=>{
+        this.listeparticipant=P;
+        this.nbrparticipant=this.listeparticipant.length;
+        // console.log('nbr participation '+this.nbrparticipant);
+      }
+    )
+
+
+    this.es.afficherDetails().subscribe(
+      P=>{
+        this.listeDetails=P;
+        // console.log(this.listeDetails)
+        // console.log('evenement'+this.nbrevenement)
+        this.listeDetails.forEach(p=>{
+          this.nbrlike=this.nbrlike+p.like;
+          this.moyenLike=this.nbrlike/this.nbrevenement;
+          this.moyenLikeentier=Math.round(this.moyenLike)
+          console.log(this.moyenLikeentier)
+        })
+        // console.log('nbr like '+this.moyenLike);
+
+      }
+    )
+
   }
+  
   private chart1() {
     this.lineChartOptions = {
       series: [

@@ -5,7 +5,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -16,7 +16,6 @@ import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { fakeBackendProvider } from './core/interceptor/fake-backend';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import {
@@ -37,6 +36,7 @@ import {
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BackofficeModule } from './backoffice/backoffice.module';
 import { ToastrModule } from 'ngx-toastr';
+import { FrontofficeModule } from './frontoffice/frontoffice.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -56,14 +56,14 @@ export function createTranslateLoader(http: HttpClient): any {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
-    FooterComponent,
+    FooterComponent
+   
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
     TranslateModule.forRoot({
@@ -80,7 +80,10 @@ export function createTranslateLoader(http: HttpClient): any {
     CoreModule,
     SharedModule,
     NgbModule,
-    BackofficeModule
+    BackofficeModule,
+    FrontofficeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -90,7 +93,7 @@ export function createTranslateLoader(http: HttpClient): any {
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
+   
   ],
   entryComponents: [],
   bootstrap: [AppComponent],

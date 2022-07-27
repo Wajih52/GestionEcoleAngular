@@ -1,0 +1,59 @@
+<section class="main-content" >
+    <br><br><div  style="text-align:center;"><h1> Affichage des classe</h1> </div>
+  <hr>
+  <a (click)="generatePdf()"  download style="float: right;"><span>Download</span><span>PDF</span></a>    
+  <button class="custom-btn btn-15" style="float: left;" routerLink="/addclasse">Ajouter</button>
+
+ 
+
+  <br> <br> <br>    
+    <div class="container" id="content" #content>
+      
+      <div class="table" >
+
+        
+        <div class="table-header">
+            <div class="header__item">nom</div>
+            <div class="header__item">nbretudiant</div>
+            <div class="header__item">nbrprof</div>
+            <div class="header__item">specialite</div>
+            <div class="header__item">nbrmatiere</div>
+         
+          
+        </div>
+        <div class="absolute">	
+          <div class="table-row" *ngFor="let item of classe; let i = index">		
+            <div class="table-data"> {{item.nom}} </div>
+            <div class="table-data">{{item.nbretudiant}}</div>
+            <div class="table-data">{{item.nbrprof}}</div>
+            <div class="table-data">{{item.specialite}}</div>
+            <div class="table-data">{{item.nbrmatiere}}</div>
+           
+            
+          
+    </div>
+  </div>
+  </div>
+  </div>
+    
+  </section>
+       
+  
+  
+  
+  
+  
+  
+  
+  
+       
+       
+  
+  
+  
+  
+  
+  
+  
+  
+  

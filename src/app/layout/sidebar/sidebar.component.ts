@@ -102,7 +102,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         for (var i = this.sidebarItems.length - 1; i >= 0; i--) {
           if (
           this.sidebarItems[i].moduleName=="enseignant"
-          ||this.sidebarItems[i].moduleName=="student"
+          ||this.sidebarItems[i].moduleName=="Student"
           ||this.sidebarItems[i].title=="-- Pages" 
           ||this.sidebarItems[i].title=="Multi Sessions"
           ||this.sidebarItems[i].title=="Facilitator Navigation" 
@@ -149,7 +149,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
           }
       }
       }
-      if(localStorage.getItem("roleUser")=="student"){
+      if(localStorage.getItem("roleUser")=="Student"){
         this.connecteduserrole="coach"
         
         for (var i = this.sidebarItems.length - 1; i >= 0; i--) {

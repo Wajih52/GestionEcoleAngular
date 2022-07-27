@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ecole</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+</head>
+<body>
+<section class="main-content">
+  <h1 class="brand"><span>Formulaire  d'inscription pour l'evenement </span> {{nomEvenement}}  </h1>
+  <div class="wrapper animated bounceInLeft">
+    <div class="company-info">
+      <h3>Ecole</h3>
+      <ul>
+        <li><i class="fa fa-road"></i> Tunis</li>
+        <li><i class="fa fa-phone"></i> (+216) 52 240 470</li>
+        <li><i class="fa fa-envelope"></i> pidevgestionecole@gmail.com</li>
+      </ul>
+    </div>
+    <div class="contact"><br>
+      <p></p>
+      <form [formGroup]="registerForm" #form='ngForm' class="needs-validation" (ngSubmit)="onSubmit(form)">
+        <input type="hidden" name="nomevenement"  [(ngModel)]="nomEvenement" >
+        <input type="hidden" name="idevenement" [(ngModel)]="id" >
+        <fieldset>
+          <!--          NOM -->
+          <div class="form-group col-auto">
+            <h5 for="nom"><strong>le nom de participant :</strong></h5>
+            <input type="text" class="form-control" id="nom" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"  formControlName="nom" name="nom" ngModel >
+            <div *ngIf=" submitted && f.nom.errors" class="invalid-feedback">
+              <div *ngIf="f.nom.errors.required"><strong>nom de participant est obligatoire</strong></div>
+              <div *ngIf="f.nom.errors.minLength"><strong>au moins trois caractéres </strong></div>
+              <div *ngIf="f.nom.errors.pattern"><strong>n'entrer que des lettres</strong> </div>
+            </div>
+          </div>
+
+
+          <!--    profession-->
+          <div class="form-group col-auto">
+            <h5 for="text"><strong>la profession :</strong></h5>
+            <input type="text" class="form-control" id="text" placeholder="ex.etudiant" formControlName="profession" [ngClass]="{ 'is-invalid': submitted && f.profession.errors }"  name="profession" ngModel>
+            <div *ngIf="submitted && f.profession.errors" class="invalid-feedback">
+              <div *ngIf="f.profession.errors.required"><strong>la profession est obligatoire</strong></div>
+              <div *ngIf="f.profession.errors.minLength"> <strong>au moins trois caractéres</strong></div>
+              <div *ngIf="f.profession.errors.pattern"><strong>n'entrer que des lettres</strong></div>
+            </div>
+          </div>
+
+          <!--  Ecole  -->
+          <div class="form-group col-auto">
+            <h5 for="ecole" ><strong>L'Ecole :</strong> </h5>
+            <input type="text" placeholder="ecole" class="form-control" formControlName="ecole" [ngClass]="{ 'is-invalid': submitted && f.ecole.errors }" name="ecole" size="12"  id="ecole"  ngModel><br>
+            <div *ngIf="submitted && f.niveau.errors" class="invalid-feedback">
+              <div *ngIf="f.niveau.errors.required"><strong>le champs est obligatoire</strong></div>
+            </div>
+          </div>
+          <!-- Niveau d'etude -->
+            <div class="form-group col-auto">
+              <h5 for="niveau" ><strong>Niveau D'Etude :</strong> </h5>
+            <input type="text" placeholder="niveau" class="form-control" name="niveau" id="niveau" [ngClass]="{ 'is-invalid': submitted && f.niveau.errors }" formControlName="niveau"  ngModel>
+
+            <div *ngIf="submitted && f.niveau.errors" class="invalid-feedback">
+              <div *ngIf="f.niveau.errors.required"><strong>le champs est obligatoire</strong></div>
+            </div>
+            </div>
+
+          <!--        Email -->
+          <div class="form-group col-auto">
+            <h5 for="email"><strong>l'Adresse Email : </strong></h5>
+            <input type="email" placeholder="exemple@exemple.com" class="form-control" title="" name="email" size="12"  id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email"  ngModel><br>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required"><strong>le champ est obligatoire</strong></div>
+              <div *ngIf="f.email.errors.pattern"><strong>le format requis est invalide</strong></div>
+            </div>
+          </div>
+
+          <!--      telephone  -->
+            <div class="form-group col-auto">
+              <h5 for="telephone"><strong>Numéro de Télephone : </strong></h5>
+            <input type="number" placeholder="ex.55 555 555" class="form-control" id="telephone" name="telephone" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"  ngModel>
+
+            <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+              <div *ngIf="f.telephone.errors.required"><strong>nom de participant est obligatoire</strong></div>
+              <div *ngIf="f.telephone.errors.pattern"><strong>format telehone est invalide</strong></div>
+              <div *ngIf="f.telephone.errors.maxLength"><strong>au maximum 8 chiffres</strong></div>
+            </div>
+          </div>
+
+          <!--Description-->
+          <div class="form-group col-auto">
+            <h5 for="commentaire"><strong>Commentaire :</strong></h5>
+            <textarea class="form-control" id="commentaire" rows="5" name="commentaire" formControlName="commentaire" [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }" ngModel></textarea>
+            <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
+              <div *ngIf="f.commentaire.errors.required"><strong>saisir une bréve commentaire</strong></div>
+            </div>
+          </div>
+
+          <br>
+
+          <div >
+            <button class="btn btn-primary mr-1" >Ajouter</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Annuler</button>
+          </div><br>
+        </fieldset>
+      </form>
+    </div>
+  </div><br><br>
+</section>
+</body>
+</html>
+
+
+

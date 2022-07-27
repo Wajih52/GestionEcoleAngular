@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<main class="d-flex flex-nowrap" >
+  <div  class="main-content">
+    <h4 class="title">
+      <span  class="title-word title-word-1">Det</span>
+      <span class="title-word title-word-2">ails </span>
+      <span class="title-word title-word-3">Even</span>
+      <span class="title-word title-word-4">ment</span>
+    </h4>
+    <table class="table table-striped" *ngFor="let d of details">
+      <tbody>
+      <tr>
+        <th scope="row">Nombre de place </th>
+        <td>{{d.capacite}}</td>
+      </tr>
+      <tr>
+        <th scope="row">type de  lieu :</th>
+        <td>{{d.typelieu}}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">lieu </th>
+        <td>{{d.lieu}}</td>
+      </tr>
+      <tr>
+        <th scope="row">type evenement </th>
+        <td>{{d.typeevenement}}</td>
+      </tr>
+      <tr>
+        <th scope="row">paiement </th>
+        <td>{{d.paiement}}</td>
+      </tr>
+      <tr>
+        <th scope="row">like </th>
+        <td >{{d.like}}</td>
+      </tr>
+      <tr>
+        <th scope="row">nombre de participation </th>
+        <td>{{d.nbrparticipation}}</td>
+      </tr>
+      <tr>
+        <th scope="row">description</th>
+        <td>{{d.description}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+
+    <button class="glow-on-hover" type="button" (click)="retour()">
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12z"/>
+      </svg>
+         Retour
+        </span>
+    </button>
+
+      <br><br><br>
+  </div>
+
+
+
+
+
+
+</main>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+
+
+<section class="main-content">
+    <br><br>
+      <div class="center"> <div class="wrapper"><h1>Ajouter classe</h1></div>
+      <form ngForm #f="ngForm">
+      
+            <div class="form-group">
+              <label for="nom">nom:</label>
+              <input type="text"  [(ngModel)]="classe.nom" placeholder="nom" name="nom" class="form-control" id="nom" [class.is-invalid]="nom.invalid && nom.touched" required #nom="ngModel">
+            </div>
+
+            <div class="form-group">
+                <label for="nbrheure">nbrheure</label>
+                <input type="text" [(ngModel)]="classe.nbretudiant" placeholder="nbretudiant" name="nbretudiant" class="form-control" id="nbretudiant" [class.is-invalid]="nbretudiant.invalid && nbretudiant.touched" required #nbretudiant="ngModel">
+              </div>
+
+              <div class="form-group">
+                <label for="nbrheure">nbrheure</label>
+                <input type="text" [(ngModel)]="classe.nbrprof" placeholder="nbrprof" name="nbrprof" class="form-control" id="nbrprof" [class.is-invalid]="nbrprof.invalid && nbrprof.touched" required #nbrprof="ngModel">
+              </div>
+
+            <div class="form-group">
+              <label for="specialite">specialite:</label>
+              <input type="text"[(ngModel)]="specialite.sens" placeholder="specialite" name="specialite" class="form-control" id="specialite" [class.is-invalid]="specialite.invalid && specialite.touched" required #specialite="ngModel">
+            </div>
+          
+            <div class="form-group">
+              <label for="nbrheure">nbrmatiere</label>
+              <input type="text" [(ngModel)]="classe.nbrmatiere" placeholder="nbrmatiere" name="nbrmatiere" class="form-control" id="nbrmatiere" [class.is-invalid]="nbrmatiere.invalid && nbrmatiere.touched" required #nbrmatiere="ngModel">
+            </div>
+          
+            <div class="buttons">
+              <div class="container">
+                  <a  (click)="savedata(f.value)" class="btn effect01" target="_blank"><span>Ajouter</span></a>
+              </div>
+              <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01"
+              accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+              (change)="addfile($event)" 
+            />
+            </div>
+           
+          </form>
+          </div>
+        </section>      
+  

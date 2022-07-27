@@ -1,13 +1,13 @@
 <section class="main-content">
   <ul class="breadcrumb breadcrumb-style ">
     <li class="breadcrumb-item">
-      <h5 class="page-title m-b-0">Table</h5>
+      <h5 class="page-title m-b-0">Users</h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
       <a routerLink="/dashboard/main">
         <i class="fas fa-home font-17"></i></a>
     </li>
-    <li class="breadcrumb-item">Table</li>
+    <li class="breadcrumb-item">Users Management</li>
   </ul>
   <div class="section-body">
     <div class="row clearfix">
@@ -20,7 +20,7 @@
                   <div class="col-lg-3 p-0">
                     <div class="ngxTableHeader">
                       <div class="table-title">
-                        <h2><strong>Advance Table</strong></h2>
+                        <h2><strong>Users Manager</strong></h2>
                       </div>
                     </div>
                   </div>
@@ -64,16 +64,16 @@
 
               <ngx-datatable-column [width]="200" name="Name">
                 <ng-template let-row="row" let-value="value" let-i="index" ngx-datatable-cell-template>
-                  <img src="{{ row.img }}" class="data-table-img" />
+                  <!-- <img src="{{ row.img }}" class="data-table-img" /> -->
                   <div class="name-col-style">
-                    <div>{{row.firstName}} {{row.lastName}}</div>
-                    <div class="font-12 text-muted">{{row.designation}}</div>
+                    <div>{{row.name}} {{row.lastName}}</div>
+                    <div class="font-12 text-muted">{{row.role}}</div>
                   </div>
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Gender" [width]="100">
+              <ngx-datatable-column name="Role" [width]="100">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.gender}}
+                  {{row.role}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Phone">
@@ -96,9 +96,9 @@
                   </div>
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Address">
+              <ngx-datatable-column name="Adress">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.address}}
+                  {{row.adress}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column [width]="100" name="Actions" sortable="false">
@@ -136,22 +136,22 @@
                     <input formControlName="id" class="form-control" type="hidden">
                   </div>
                   <div class="input-field col s12 d-none">
-                    <input formControlName="img" class="form-control" type="hidden">
+                  <!--   <input formControlName="img" class="form-control" type="hidden"> -->
                   </div>
                   <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                       <label>First name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="First name" formControlName="firstName"
+                      <input type="text" class="form-control" placeholder="name" formControlName="name"
                         required>
                       <small class="form-text text-danger"
-                        *ngIf="!register.get('firstName').valid && register.get('firstName').touched"> First name is
+                        *ngIf="!register.get('name').valid && register.get('name').touched"> First name is
                         required</small>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                      <label>Last name <span class="text-danger"></span></label>
-                      <input type="text" class="form-control" placeholder="Last name" formControlName="lastName">
+                      <label>Random password <span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="password" formControlName="password">
                       <small class="form-text text-danger"
-                        *ngIf="!register.get('lastName').valid && register.get('lastName').touched"> Last name is
+                        *ngIf="!register.get('password').valid && register.get('password').touched"> Password name is
                         required</small>
                     </div>
                   </div>
@@ -174,7 +174,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                       <label>Designation <span class="text-danger">*</span></label>
-                      <select class="form-control" formControlName="designation" required>
+                      <select class="form-control" formControlName="role" required>
                         <option value="" selected disabled>Please select</option>
                         <option *ngFor="let desig of designationType" [value]="desig.value">
                           {{desig.value}}
@@ -219,16 +219,16 @@
               <div class="modal-header editRowModal">
                 <h4 class="modal-title" id="modal-basic-title">
                   <div class="table-modal-header">
-                    <img [src]='selectedRowData?.img' alt="avatar">
+                 <!--    <img [src]='selectedRowData?.img' alt="avatar"> -->
                     <div class="modal-about">
                       <div class="font-weight-bold p-t-10 font-17">
-                        {{selectedRowData?.firstName}}
+                        {{selectedRowData?.name}}
                         {{selectedRowData?.lastName}}</div>
                     </div>
                   </div>
                 </h4>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                  <span aria-hidden="true"><i class="material-icons">close</i></span>
+                  <span aria-hidden="true"><i  class="material-icons">close </i></span>
                 </button>
               </div>
               <div class="modal-body">
@@ -239,17 +239,17 @@
                   <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                       <label>First name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="First name" formControlName="firstName"
+                      <input type="text" class="form-control" placeholder="name" formControlName="name"
                         required>
                       <small class="form-text text-danger"
-                        *ngIf="!editForm.get('firstName').valid && editForm.get('firstName').touched"> First name is
+                        *ngIf="!editForm.get('name').valid && editForm.get('name').touched"> Name is
                         required</small>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                      <label>Last name <span class="text-danger"></span></label>
-                      <input type="text" class="form-control" placeholder="Last name" formControlName="lastName">
+                      <label>Random Password <span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="Password" formControlName="password">
                       <small class="form-text text-danger"
-                        *ngIf="!editForm.get('lastName').valid && editForm.get('lastName').touched"> Last name is
+                        *ngIf="!editForm.get('password').valid && editForm.get('password').touched"> Last name is
                         required</small>
                     </div>
                   </div>
@@ -271,7 +271,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                       <label>Designation <span class="text-danger">*</span></label>
-                      <select class="form-control" formControlName="designation" required>
+                      <select class="form-control" formControlName="role" required>
                         <option value="" selected disabled>Please select</option>
                         <option *ngFor="let desig of designationType" [value]="desig.value">
                           {{desig.value}}
@@ -300,8 +300,8 @@
                   <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                       <label>Address<span class="text-danger"></span></label>
-                      <textarea type="textarea" class="form-control" placeholder="Address"
-                        formControlName="address"></textarea>
+                      <textarea type="textarea" class="form-control" placeholder="adress"
+                        formControlName="adress"></textarea>
                     </div>
                   </div>
                   <div class="modal-footer">

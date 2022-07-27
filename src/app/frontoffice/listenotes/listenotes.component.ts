@@ -38,7 +38,7 @@ export class ListenotesComponent implements OnInit {
 
         }else{
           console.log("student");
-          localStorage.setItem("roleUser","student") 
+          localStorage.setItem("roleUser","Student") 
         }
       }
       

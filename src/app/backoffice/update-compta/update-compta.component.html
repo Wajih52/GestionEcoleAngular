@@ -1,0 +1,43 @@
+
+
+
+<section class="main-content">
+
+    <div class="center"> <div class="wrapper"><h1>Update Compta</h1></div>
+   
+  <form #f="ngForm" [formGroup]="formCompta">
+  
+    <div class="form-group">
+      <label>montant</label>
+      <input type="number" name="montant"  class="form-control" [(ngModel)]="compta.montant" formControlName="montant"> 
+    </div>
+  
+    <div class="form-group">
+      <label>sens</label>
+      <input type="text" name="sens" class="form-control" [(ngModel)]="compta.sens" formControlName="sens">
+    </div> 
+    <div class="form-group">
+        <label>desc</label>
+        <input type="text"  name="desc" class="form-control" [(ngModel)]="compta.desc" formControlName="desc"> 
+      </div> 
+    <div class="form-group">
+      <label>balance</label>
+      <input type="number" name="balance"  class="form-control" [(ngModel)]="compta.balance" formControlName="balance" > 
+    </div> 
+
+
+    <div class="form-group">
+      <label>date</label>
+      <input type="date"  name="date" class="form-control" [(ngModel)]="compta.date" formControlName="date">
+    </div>
+  
+    <div class="buttons">
+      <div class="container">
+          <a  (click)="updateCompta(f.value)" class="btn effect01" target="_blank"   routerLink="/afficherCompta"><span>Update</span></a>
+      </div>
+    </div>
+    
+    </form>
+  </div>
+</section>
+  

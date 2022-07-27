@@ -1,0 +1,42 @@
+<section class="main-content">
+    <br><br>
+    <div class="center"> <div class="wrapper"><h1>Ajouter classe </h1></div>
+   
+  <form #f="ngForm" [formGroup]="formClasse">
+  
+    <div class="form-group">
+      <label>nom</label>
+      <input type="text" name="nom"  class="form-control" [(ngModel)]="classe.nom" formControlName="nom"> 
+    </div>
+  
+    <div class="form-group">
+        <label>nbretudiant</label>
+        <input type="text" name="nbretudiant"  class="form-control" [(ngModel)]="classe.nbretudiant" formControlName="nbretudiant"> 
+      </div>
+
+      <div class="form-group">
+        <label>nbrprof</label>
+        <input type="text" name="nbrprof"  class="form-control" [(ngModel)]="classe.nbrprof" formControlName="nbrprof"> 
+      </div>
+
+    <div class="form-group">
+        <label>specialite</label>
+        <input type="text" name="specialite"  class="form-control" [(ngModel)]="classe.specialite" formControlName="specialite"> 
+      </div>
+      <div class="form-group">
+        <label>nbrmatiere</label>
+        <input type="text" name="nbrmatiere"  class="form-control" [(ngModel)]="classe.nbrmatiere" formControlName="nbrmatiere"> 
+      </div>
+
+
+    
+  
+    <div class="buttons">
+      <div class="container">
+          <a  (click)="updateMatiere(f.value)" class="btn effect01" target="_blank"><span>Update</span></a>
+      </div>
+    </div>
+    
+    </form>
+  </div>
+</section>

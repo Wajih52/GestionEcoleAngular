@@ -1,0 +1,58 @@
+<section class="main-content" >
+    <br><br><div  style="text-align:center;"><h1> Affichage des Matiere</h1> </div>
+  <hr>
+  <a (click)="generatePdf()"  download style="float: right;"><span>Download</span><span>PDF</span></a>    
+  <button class="custom-btn btn-15" style="float: left;" routerLink="/addMatiere">Ajouter</button>
+
+ 
+
+  <br> <br> <br>    
+    <div class="container" id="content" #content>
+      
+      <div class="table" #td1>
+
+        
+        <div class="table-header">
+          <div class="header__item">nom</div>
+          <div class="header__item">specialite</div>
+          <div class="header__item">nbrheure</div>
+         
+          <div class="header__item"></div>
+          <div class="header__item"></div>
+        </div>
+        <div class="absolute">	
+          <div class="table-row" *ngFor="let item of matiere; let i = index">		
+            <div class="table-data"> {{item.nom}} </div>
+            <div class="table-data">{{item.specialite}}</div>
+            <div class="table-data">{{item.nbrheure}}</div>
+           
+            <div class="table-data"><div class="" style="text-align: center; margin-top: 8px;">
+              <button class="icon-btn add-btn">  
+                <div class="btn-txt"(click)="deleteMatiere(item._id,i)" >Supprimer</div>
+              </button>
+          </div>
+        </div>
+          <div class="table-data"><div class="" style="text-align: center;margin-top:5%">
+            <button class="icon-btn1 add-btn1">  
+              <div class="add-icon"></div>
+              <div class="btn-txt" [routerLink]="['./edit-matiere', item._id]">Edit</div>
+            </button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+    
+  </section>
+       
+  
+  
+  
+  
+  
+  
+  
+  
+       

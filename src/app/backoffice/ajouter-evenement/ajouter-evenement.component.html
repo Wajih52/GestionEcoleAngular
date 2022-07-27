@@ -1,0 +1,143 @@
+<section class="main-content" >
+  <br><br>
+
+  <!--  ************************************Ajouter*****************************************-->
+  <div class="card"><br>
+    <p id="t1">Ajouter une evenement</p>
+    <form [formGroup]="registerForm" #form='ngForm' class="needs-validation" (ngSubmit)="onSubmit(form)">
+
+      <fieldset>
+        <!--          NOM -->
+        <div class="form-group col-auto">
+          <label for="nom">Entrez le nom de l'evenement</label>
+          <input type="text" class="form-control" id="nom" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"  formControlName="nom" name="nom" ngModel >
+          <div *ngIf=" submitted && f.nom.errors" class="invalid-feedback">
+            <div *ngIf="f.nom.errors.required">nom de l'evenement est obligatoire</div>
+          </div>
+        </div>
+
+
+        <!--    responsable-->
+        <div class="form-group col-auto">
+          <label for="text">le responsable de l'evenement</label>
+          <input type="text" class="form-control" id="text" placeholder="" formControlName="responsable" [ngClass]="{ 'is-invalid': submitted && f.responsable.errors }"  name="responsable" ngModel>
+          <div *ngIf="submitted && f.responsable.errors" class="invalid-feedback">
+            <div *ngIf="f.responsable.errors.required">le Nom du responsable est obligatoire</div>
+            <div *ngIf="f.responsable.errors.minLength"> au minimum trois lettre</div>
+            <div *ngIf="f.responsable.errors.pattern">inséerer que des lettres</div>
+          </div>
+        </div>
+        <!--  date début -->
+        <div class="form-group col-auto">
+          <label for="date1" ><strong>Commence le</strong> </label>
+          <input type="date" placeholder="Date de début" class="form-control" formControlName="datedebut" [ngClass]="{ 'is-invalid': submitted && f.datedebut.errors }" name="datedebut" size="12"  id="date1"  ngModel><br>
+          <!--        temps de debut -->
+          <input type="time" placeholder="Heure de début" class="form-control" name="heuredebut" id="heuredebut" [ngClass]="{ 'is-invalid': submitted && f.heuredebut.errors }" formControlName="heuredebut"  ngModel>
+          <div *ngIf="submitted && f.datedebut.errors" class="invalid-feedback">
+            <div *ngIf="f.datedebut.errors.required">veuilez saisir la date de debut de l'evenement</div>
+          </div>
+          <div *ngIf="submitted && f.heuredebut.errors" class="invalid-feedback">
+            <div *ngIf="f.heuredebut.errors.required">insérer l'heure de départ de l'evenement</div>
+          </div>
+
+        </div>
+
+        <!--        date de fin -->
+        <div class="form-group col-auto">
+          <label for="date2"><strong>Se termine le</strong></label>
+          <input type="date" placeholder="Date de début" class="form-control" title="" name="datefin" size="12"  id="date2" [ngClass]="{ 'is-invalid': submitted && f.datefin.errors }" formControlName="datefin"  ngModel><br>
+          <!--      temp de fin   -->
+          <input type="time" placeholder="Heure de début" class="form-control" id="heurefin" name="heurefin" formControlName="heurefin" [ngClass]="{ 'is-invalid': submitted && f.heurefin.errors }"  ngModel>
+          <div *ngIf="submitted && f.datefin.errors" class="invalid-feedback">
+            <div *ngIf="f.datefin.errors.required">veuilez saisir la date de fin de l'evenement</div>
+          </div>
+          <div *ngIf="submitted && f.heurefin.errors" class="invalid-feedback">
+            <div *ngIf="f.heurefin.errors.required">insérer l'heure de fin de l'evenement</div>
+          </div>
+        </div>
+
+
+        <!--type lieu-->
+        <div class="form-group col-auto">
+          <label for="selection" >Type de lieu de l'évènement</label>
+          <select id="selection" class="form-control" name="typelieu" ngModel formControlName="typelieu" [ngClass]="{ 'is-invalid': submitted && f.typelieu.errors }" >
+            <option value=""  selected >Sélectionner</option>
+            <option value="Sur Site"  >Sur Site</option>
+            <option value="En ligne" >En ligne</option>
+          </select>
+          <div *ngIf="submitted && f.typelieu.errors" class="invalid-feedback">
+            <div *ngIf="f.typelieu.errors.required">sélectionner le type de lieu </div>
+          </div>
+        </div>
+
+
+        <!--      Le lieu de levenemenet-->
+        <div class="form-group col-auto">
+          <label for="lieu">L'emplacement</label>
+          <input type="text" class="form-control" id="lieu" placeholder="" name="lieu" formControlName="lieu" [ngClass]="{ 'is-invalid': submitted && f.lieu.errors }"   ngModel>
+          <div *ngIf="submitted && f.lieu.errors" class="invalid-feedback">
+            <div *ngIf="f.lieu.errors.required">citer l'emplacement de l'evenement</div>
+          </div>
+        </div>
+
+
+        <!--nombre de place -->
+        <div class="col-md-3 mb-3 col-auto">
+          <label for="cp">Nombre de place</label>
+          <input type="number" class="form-control" id="cp" placeholder="Nombre" name="capacite" formControlName="capacite" [ngClass]="{ 'is-invalid': submitted && f.capacite.errors }" ngModel>
+          <div *ngIf="submitted && f.capacite.errors" class="invalid-feedback">
+            <div *ngIf="f.capacite.errors.required">le champ nombre de place est vide !!!</div>
+            <div *ngIf="f.capacite.errors.max">nombre invalid !! </div>
+          </div>
+        </div>
+
+        <!--Type de levenement-->
+        <div class="form-group col-auto" >
+          <label for="type">Type de l'évènement</label>
+          <select id="type" class="form-control" name="typeevenement" formControlName="typeevenement" [ngClass]="{ 'is-invalid': submitted && f.typeevenement.errors }" ngModel >
+            <option value="" selected >Sélectionner</option>
+            <option value="Conférence" >Conférence</option>
+            <option value="Attraction" >Attraction</option>
+            <option value="Formation ou Atelier"  >Formation ou Atelier</option>
+            <option value="Convention" >Convention</option>
+            <option value="Voyage" >Voyage</option>
+          </select>
+          <div *ngIf="submitted && f.typeevenement.errors" class="invalid-feedback">
+            <div *ngIf="f.typeevenement.errors.required">sélectionner le type de l'evenement </div>
+          </div>
+        </div>
+
+        <!--Paiement-->
+        <div class="form-group col-auto">
+          <label for="paiment">Paiement</label>
+          <select id="paiment" class="form-control" name="paiement" formControlName="paiement" [ngClass]="{ 'is-invalid': submitted && f.paiement.errors }"  ngModel>
+            <option value=""  >Sélectionner</option>
+            <option value="Gratuit" >Gratuit</option>
+            <option value="Payante" >Payante</option>
+          </select>
+          <div *ngIf="submitted && f.paiement.errors" class="invalid-feedback">
+            <div *ngIf="f.paiement.errors.required">sélectionner le type de paiement</div>
+          </div>
+        </div>
+
+        <!--Description-->
+        <div class="form-group col-auto">
+          <label for="bio">Description</label>
+          <textarea class="form-control" id="bio" rows="5" name="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" ngModel></textarea>
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">saisir la description de l'evenement</div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <button class="btn btn-primary mr-1" >Ajouter</button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()">Annuler</button>
+        </div><br>
+      </fieldset>
+    </form>
+  </div>
+  <br><br>
+</section>
+

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-     
+      { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -19,6 +19,7 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () =>
           import('./backoffice/backoffice.module').then((m) => m.BackofficeModule),
+          
       },
       {
         path: 'enseignant',
