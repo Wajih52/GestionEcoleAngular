@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+
+<section class="main-content" >
+  <!--*****************************  SIDE BAR  **********************************************-->
+  <!--   tableau      tableau     tableau     tableau    tableau    tableau  tableau  tableau -->
+  <br>
+  <div class="card">
+  <div class="card-body" >
+    <div class="container">
+      <h4 class="title">
+        <span class="title-word title-word-1">La </span>
+        <span class="title-word title-word-2">liste </span>
+        <span class="title-word title-word-3">Des </span>
+        <span class="title-word title-word-4">Evenements</span>
+      </h4>
+    </div>
+    <br>
+    <div class="search-name">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH  ">
+    </div>
+    <br>
+    <table class="table table-striped table-responsive" >
+      <thead>
+      <tr>
+        <th>Nom de l'évènement</th>
+        <th>Responsable</th>
+        <th>Date de Début</th>
+        <th>Heure de Début</th>
+        <th>Date de Fin</th>
+        <th>Heure de Fin</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let E of listEvenement|filter:searchText;let i=index">
+        <td>{{E.nom}}</td>
+        <td>{{E.responsable}}</td>
+        <td>{{E.datedebut}}</td>
+        <td>{{E.heuredebut}}</td>
+        <td>{{E.datefin}}</td>
+        <td>{{E.heurefin}}</td>
+        <td>
+          <div >
+            <input type="hidden" value="{{E._id}}" #id1  name="secretid1">
+            <input type="hidden" value="{{E.details}}" #id2 name="secretid2">
+            <!--          <a [routerLink]="['/details/',E.details]" >detail</a>-->
+            <button type="button" class="btn btn-outline-primary btn-sm" [routerLink]="['/etudiant/details/',E.details]" >Details</button>
+            <button class="btn btn-outline-warning btn-sm" type="button" [routerLink]="['/etudiant/formulaire/',E._id,E.nom]">Participer</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" [disabled]="l==1"  (click)="like(E.details,i)" >J'aime</button>
+          </div>
+        </td>
+
+      </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+  </div>
+</section>
+<script>
+</script>
+</body>

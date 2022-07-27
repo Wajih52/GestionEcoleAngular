@@ -1,0 +1,146 @@
+<section class="main-content">
+  <div class="col-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-body p-0 testheight">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Affichage des notes</a>
+            <ng-template ngbNavContent>
+              <div style="display: flex; margin-left: 20%;">
+              <div  style="color:#6874cc;font-weight: bold; margin-left: 5px;">
+                <label>type</label>
+                <select
+                  name="type"
+                  (change)="selectOption($any($event.target).value)"
+                >
+                  <option>Select</option>
+                  <option value="DS">DS</option>
+                  <option value="Exam">Exam</option>
+                </select>
+                </div>
+                <div style="color:#6874cc;font-weight: bold; margin-left: 5px;" >
+                <label *ngIf="showmatiere == true">matiere</label>
+                <select
+                  *ngIf="showmatiere == true"
+                  name="matiere"
+                  (change)="selectOption2($any($event.target).value)"
+                >
+                  <option>Select</option>
+
+                  <option value="math">math</option>
+                  <option value="anglais">anglais</option>
+                </select>
+</div>
+<div style="color:#6874cc;font-weight: bold; margin-left: 5px;" >
+                <label *ngIf="shownote == true">Note</label>
+                <select
+                  *ngIf="shownote == true"
+                  name="note"
+                  (change)="selectOption3($any($event.target).value)"
+                >
+                
+                  <option>Select</option>
+
+                  <option value="+10">plus que 10</option>
+                  <option value="-10">moin que 10</option>
+                </select>
+              
+               
+                </div>
+                
+                <button *ngIf="showfilter == true" (click)="filter()"  class="btn" style="margin-left:2%;background-color:#5864bd;width:90px;height:30px;color: #FFF; text-align: center;justify-content: center;justify-self: center;">
+                  Filter
+                </button>
+               </div>
+               
+              <section>
+
+            
+                  <div class="d-flex justify-content-center">
+                <table class="table costum" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);margin-top:10px;">
+                  <tr class="table-header">
+                    <th class="header__item">matiere</th>
+                    <th class="header__item">type</th>
+                    <th class="header__item">Note</th>
+                    <th class="header__item">etudiant</th>
+                    <th class="header__item">Action</th>
+                  </tr>
+                  <tr class="table-row" *ngFor="let item of listenote; let i = index">
+                    <td class="table-data">{{ item.matiere }}</td>
+
+                    <td class="table-data">{{ item.type }}</td>
+                    <td class="table-data">{{ item.note }}</td>
+                    <td  class="table-data">{{ item.etudiant }}</td>
+
+                    <td>
+                      <div>
+                        <a class="tblEditBtn"
+                          ><i
+                            class="fas fa-pen"
+                            [routerLink]="['../liste/edit-note', item._id]"
+                          ></i
+                        ></a>
+                        <a class="tblDelBtn"
+                          ><i
+                            class="far fa-trash-alt"
+                            (click)="deletenote(item._id, i)"
+                          >
+                          </i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                </div>
+               
+
+                <button
+                  type="button"
+                  class="btn btn-primary mr-3"
+                  routerLink="../add"
+                >
+                  Add New note
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary mr-3"
+                  (click)="exportExcel()"
+                >
+                  Export Excel
+                </button>
+                <input
+                value="RETOUR"
+                class="btn  mar"
+                (click)="goback()"
+                style="background-color: grey;"
+               
+              />
+              </section>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>liste moyenne par matière</a>
+            <ng-template ngbNavContent>
+              
+              <div class="d-flex justify-content-center">
+              <table class="table costum" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);">
+                <tr class="table-header">
+                  <th class="header__item">Matiere</th>
+                  <th class="header__item">Etudiant</th>
+                  <th class="header__item">Moyenne</th>
+                </tr>
+                <tr *ngFor="let item of arrayUniqueByKey; let i = index">
+                  <td class="table-data">{{ item.matiere }}</td>
+                  <td class="table-data">{{ item.etudiant }}</td>
+                  <td class="table-data">{{ item.moyenne }}</td>
+                </tr>
+              </table>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+</section>

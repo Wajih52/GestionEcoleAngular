@@ -1,0 +1,34 @@
+<section class="main-content">
+
+<body>
+    <div class="center"> <div class="wrapper"><h1>Modifier Piece</h1></div>
+   
+  <form #f="ngForm" [formGroup]="formpPiece">
+  
+   
+  
+    <div class="form-group">
+      <label>validation</label>
+      <input type="text" name="validation" class="form-control" [(ngModel)]="piece.validation" formControlName="validation">
+    </div> 
+  
+
+    <div class="form-group">
+      <label>description</label>
+      <input type="text"  name="desc" class="form-control" [(ngModel)]="piece.description" formControlName="description"> 
+    </div> 
+    <div class="form-group">
+      <label>date</label>
+      <input type="text"  name="date" class="form-control" [(ngModel)]="piece.date" formControlName="date">
+    </div>
+  
+    <div class="buttons">
+      <div class="container">
+          <a  (click)="updateAbsence(f.value)" class="btn effect01" target="_blank"><span>Update</span></a>
+      </div>
+    </div>
+    
+    </form>
+  </div>
+  </body>
+  </section>

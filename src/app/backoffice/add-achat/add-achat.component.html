@@ -1,0 +1,50 @@
+
+
+
+<section class="main-content">
+  <br><br>
+    <div class="center"> <div class="wrapper"><h1>Ajouter Achat</h1></div>
+    <form ngForm #f="ngForm">
+    
+          <div class="form-group">
+            <label for="montnt">Montant:</label>
+            <input type="number"  [(ngModel)]="achat.montant" placeholder="montant" name="montant" class="form-control" id="montant" [class.is-invalid]="montant.invalid && montant.touched" required #montant="ngModel">
+          </div>
+        
+          <div class="form-group">
+            <label for="fournisseur">Sens:</label>
+            <input type="text"[(ngModel)]="achat.sens" placeholder="sens" name="sens" class="form-control" id="sens" [class.is-invalid]="sens.invalid && sens.touched" required #sens="ngModel">
+          </div>
+        
+          <div class="form-group">
+            <label for="fournisseur">fournisseur</label>
+            <input type="text" [(ngModel)]="achat.fournisseur" placeholder="fournisseur" name="fournisseur" class="form-control" id="fournisseur" [class.is-invalid]="fournisseur.invalid && fournisseur.touched" required #fournisseur="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="qte">Quantité</label>
+            <input type="number" [(ngModel)]="achat.qte" placeholder="qte" name="qte" class="form-control" id="qte" [class.is-invalid]="qte.invalid && qte.touched" required #qte="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" [(ngModel)]="achat.desc" placeholder="desc" name="desc" class="form-control" id="desc" [class.is-invalid]="desc.invalid && desc.touched" required #desc="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" [(ngModel)]="achat.date" placeholder="date" name="date" class="form-control" id="date" [class.is-invalid]="date.invalid && date.touched" required #date="ngModel">
+          </div> <br> <br>
+          <div class="buttons">
+            <div class="container">
+                <a  (click)="savedata(f.value)" class="btn effect01" target="_blank" ><span>Ajouter</span></a>
+            </div>
+            <input
+            type="file"
+            id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01"
+            accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            (change)="addfile($event)" 
+          />
+          </div>
+         
+        </form>
+        </div>
+      </section>      

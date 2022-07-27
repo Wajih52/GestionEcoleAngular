@@ -1,0 +1,125 @@
+<section class="main-content">
+  <div class="col-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-body p-0 testheight">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Affichage des notes</a>
+            <ng-template ngbNavContent>
+              <section>
+               
+                <br />
+                
+                <label>type</label>
+                <select
+                  name="type"
+                  (change)="selectOption($any($event.target).value)"
+                >
+                  <option>Select</option>
+                  <option value="DS">DS</option>
+                  <option value="Exam">Exam</option>
+                </select>
+                <label *ngIf="showmatiere == true">matiere</label>
+                <select
+                  *ngIf="showmatiere == true"
+                  name="matiere"
+                  (change)="selectOption2($any($event.target).value)"
+                >
+                  <option>Select</option>
+
+                  <option value="math">math</option>
+                  <option value="anglais">anglais</option>
+                </select>
+
+                <label *ngIf="shownote == true">Note</label>
+                <select
+                  *ngIf="shownote == true"
+                  name="note"
+                  (change)="selectOption3($any($event.target).value)"
+                >
+                
+                  <option>Select</option>
+
+                  <option value="+10">plus que 10</option>
+                  <option value="-10">moin que 10</option>
+                </select>
+                
+                <button *ngIf="showfilter == true" (click)="filter()"  class=" btn-primary mr-3 btnfilter">
+                  Filter
+                </button>
+               
+                  <div class="d-flex justify-content-center">
+                <table class="table costum"style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);">
+                  <tr class="table-header">
+                    <th class="header__item">matiere</th>
+                    <th class="header__item">type</th>
+                    <th class="header__item">Note</th>
+                    <th class="header__item">etudiant</th>
+                   
+                  </tr>
+                  <tr class="table-row" *ngFor="let item of listenote; let i = index">
+                    <td class="table-data">{{ item.matiere }}</td>
+
+                    <td class="table-data">{{ item.type }}</td>
+                    <td class="table-data">{{ item.note }}</td>
+                    <td  class="table-data">{{ item.etudiant }}</td>
+
+                 
+                  </tr>
+                </table>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary mr-3"
+                  (click)="exportExcel()"
+                >
+                  Export Excel
+                </button>
+                <input
+                value="RETOUR"
+                class="btn  mar1"
+                (click)="goback()"
+                style="background-color: grey;"
+                
+               
+              />
+              </section>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            
+            <a ngbNavLink>liste moyenne par matière</a>
+            <ng-template ngbNavContent>
+              <div class="d-flex justify-content-center">
+              <table class="table costum"style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);">
+                <tr class="table-header">
+                  <th class="header__item">Matiere</th>
+                  <th class="header__item">Etudiant</th>
+                  <th class="header__item">Moyenne</th>
+                </tr>
+                <tr *ngFor="let item of arrayUniqueByKey; let i = index">
+                  <td class="table-data">{{ item.matiere }}</td>
+                  <td class="table-data">{{ item.etudiant }}</td>
+                  <td class="table-data">{{ item.moyenne }}</td>
+                </tr>
+              </table>
+              </div>
+              <input
+              value="RETOUR"
+              class="btn btn-danger mar"
+              (click)="goback()"
+              
+             
+            />
+            </ng-template>
+
+          </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      
+      </div>
+    
+    </div>
+  </div>
+</section>

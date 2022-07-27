@@ -1,0 +1,45 @@
+<section class="main-content">
+    <br><div  style="text-align:center;"><h1> Affichage des Achats</h1> </div>
+  <hr>
+  <button class="custom-btn btn-15" download (click)="exportData(h)" >Export Xls</button>
+  <a (click)="generatePdf()"  style="  margin-left: 870px;" ><span>Download</span><span>PDF</span></a>    
+  
+  <br> <br>  
+    <div class="container" id="content" #content>
+      
+      <div class="table">
+        <div class="table-header">
+          <div class="header__item">montant</div>
+          <div class="header__item">sens</div>
+          <div class="header__item">fournisseur</div>
+          <div class="header__item">quantité</div>
+          <div class="header__item">description</div>
+          <div class="header__item">Date</div>
+   
+        </div>
+        <div class="absolute">	
+          <div class="table-row" *ngFor="let item of achat; let i = index">		
+            <div class="table-data"> {{item.montant}} </div>
+            <div class="table-data">{{item.sens}}</div>
+            <div class="table-data">{{item.fournisseur}}</div>
+            <div class="table-data">{{item.qte}}</div>
+            <div class="table-data">{{item.desc}}</div>
+            <div class="table-data">{{item.date}}</div>
+            
+         
+    </div>
+  </div>
+  </div>
+  </div>
+    
+  </section>
+       
+  
+  
+  
+  
+  
+  
+  
+  
+       

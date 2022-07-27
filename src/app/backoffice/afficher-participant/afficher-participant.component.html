@@ -1,0 +1,67 @@
+<section class="main-content " ><br>
+  <!--*****************************  SIDE BAR  **********************************************-->
+  <!--   tableau      tableau     tableau     tableau    tableau    tableau  tableau  tableau -->
+  <div class="card" >
+    <div class="card-body">
+      <div class="container">
+        <div class="container">
+          <h4 class="title">
+            <span class="title-word title-word-1">La </span>
+            <span class="title-word title-word-2">liste </span>
+            <span class="title-word title-word-3">Des </span>
+            <span class="title-word title-word-4">Participants</span>
+          </h4>
+        </div>
+      </div>
+      <br>
+      <div class="search-name">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH  ">
+      </div>
+      <br>
+      <form #f='ngForm'>
+      <table class="table table-striped table-responsive" >
+        <thead>
+        <tr>
+          <th>Nom de participant</th>
+          <th>profession</th>
+          <th>Ecole</th>
+          <th>Niveau d'étude</th>
+          <th>Email</th>
+          <th>Telephone</th>
+          <th>Evenement concerné</th>
+          <th>Etat </th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr  *ngFor="let P of listParticipant|filter:searchText;let i= index">
+          <td>{{P.nom}}</td>
+          <td>{{P.profession}}</td>
+          <td>{{P.ecole}}</td>
+          <td>{{P.niveau}}</td>
+          <td>{{P.email}}</td>
+          <td>{{P.telephone}}</td>
+          <td>{{P.nomevenement}}</td>
+          <td>
+            <div *ngIf="P.accepted==0"  class="badge badge-warning">En attente</div>
+            <div *ngIf="P.accepted==1"class="badge badge-info">OK</div>
+          </td>
+          <td>
+            <div >
+              <input type="hidden" value="{{P.idevenement}}"   name="secretid" >
+              <button type="button" [disabled]="P.accepted==1" class="btn btn-outline-success btn-sm" (click)="valider(P._id,P.email,i)"  >Accepté</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" (click)="supprimer(P._id,i)">Refusé</button>
+
+            </div>
+          </td>
+
+        </tr>
+
+        </tbody>
+      </table>
+      </form>
+    </div>
+  </div>
+</section>
+

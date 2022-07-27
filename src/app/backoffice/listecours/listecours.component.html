@@ -1,0 +1,98 @@
+<section class="main-content">
+  <div class="card">
+     <div class="wrapper"><h1>Affichage Cours</h1></div>
+     <div class="card-body">
+    <section>
+    
+      <br />
+       <div class="d-flex justify-content-center">
+      <table class="table costum" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);">
+        <tr class="table-header">
+          <th class="header__item">nom</th>
+          <th class="header__item">classe</th>
+          <th class="header__item">matiere</th>
+          <th class="header__item">nomprof</th>
+          <th class="header__item">piece</th>
+          <th class="header__item">Action</th>
+        </tr>
+        <tr  class="table-row" *ngFor="let item of listecours; let i = index">
+          <td class="table-data">{{ item.nom }}</td>
+          <td class="table-data">{{ item.classe }}</td>
+          <td class="table-data">{{ item.matiere }}</td>
+          <td class="table-data">{{ item.nomprof }}</td>
+          <td>
+            <i class="fas fa-eye" (click)="open(content, item._id)"></i>
+          </td>
+          <td>
+            <div>
+              <a class="tblEditBtn"
+                ><i
+                  class="fas fa-pen"
+                  [routerLink]="['../listecours/edit-cours', item._id]"
+                ></i
+              ></a>
+              <a class="tblDelBtn"
+                ><i class="far fa-trash-alt" (click)="deletenote(item._id, i)">
+                </i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+      <button type="button" class="btn btn-primary mr-3" routerLink="../addcours">
+        Add New cours
+      </button>
+      
+      <input
+      value="RETOUR"
+      class="btn mar"
+      (click)="goback()"
+      style="background-color: grey;"
+     
+    />
+      <!-- <pdf-viewer
+    [src]="'assets/pdf-test.pdf'"
+    [original-size]="false"
+  ></pdf-viewer> -->
+      <!-- <ngx-extended-pdf-viewer
+    [src]="'assets/pdf-test.pdf'"
+    [useBrowserLocale]="true"
+    [textLayer]="true"
+    [showHandToolButton]="true"
+    [showPresentationModeButton]="true"
+  >
+  </ngx-extended-pdf-viewer> -->
+    </section>
+    </div>
+    </div>
+</section>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <pdf-viewer
+          [src]="pdfSource"
+          [original-size]="false"
+        ></pdf-viewer>
+      <!-- <ngx-extended-pdf-viewer
+        [src]="pdfSource"
+        [useBrowserLocale]="true"
+        [textLayer]="true"
+        [showHandToolButton]="true"
+        [showPresentationModeButton]="true"
+      >
+      </ngx-extended-pdf-viewer> -->
+    </div>
+  </div>
+  
+</ng-template>

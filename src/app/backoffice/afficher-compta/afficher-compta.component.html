@@ -1,0 +1,58 @@
+
+
+
+
+<section class="main-content">
+    <br>
+      <div  style="text-align:center;"><h1> Affichage des Comptabilité</h1> </div>
+      <hr>
+    
+     
+      <button class="custom-btn btn-15" (click)="exportData(h)" >Export Xls</button>
+      <button class="custom-btn btn-15" (click)="afficherSum()" style="  margin-left:  380px;"  >Balance</button>
+      <a   download style="  margin-left: 360px;" (click)="generatePdf()"><span>Download</span><span>PDF</span></a>    
+      
+      
+      <br> <br>
+        <div class="container" id="content" #content>
+          
+          <div class="table">
+            <div class="table-header">
+              <div class="header__item">montant</div>
+              <div class="header__item">sens</div>
+              <div class="header__item">balance</div>
+              <div class="header__item">description</div>
+      
+              <div class="header__item">Date</div>
+              <div class="header__item"></div>
+              <div class="header__item"></div>
+            </div>
+            <div class="absolute">	
+              <div class="table-row" *ngFor="let item of compta; let i = index">		
+                <div class="table-data"> {{item.montant}} </div>
+                <div class="table-data">{{item.sens}}</div>
+                <div class="table-data">{{item.balance}}</div>
+                <div class="table-data">{{item.desc}}</div>
+                <div class="table-data">{{item.date}}</div>
+                <div class="table-data"><div class="" style="text-align: center; margin-top: 8px;">
+                  <button class="icon-btn add-btn">  
+                    <div class="btn-txt"(click)="deleteCompta(item._id,i)" >Supprimer</div>
+                  </button>
+              </div>
+            </div>
+              <div class="table-data"><div class="" style="text-align: center;margin-top:5%">
+                <button class="icon-btn1 add-btn1">  
+                  <div class="add-icon"></div>
+                  <div class="btn-txt" [routerLink]="['./edit-compta', item._id]">Edit</div>
+                </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+        
+      
+           
+    </section>
